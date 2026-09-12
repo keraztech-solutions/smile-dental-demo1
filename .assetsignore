@@ -1,0 +1,12 @@
+.git
+.git/**
+.gitignore
+.wrangler
+.wrangler/**
+worker.js
+wrangler.toml
+.assetsignore
+node_modules
+node_modules/**
+.dev.vars
+README.md
