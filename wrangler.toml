@@ -1,0 +1,7 @@
+name = "smile-dental-demo1"
+main = "worker.js"
+compatibility_date = "2026-09-01"
+
+[assets]
+directory = "./"
+binding = "ASSETS"
