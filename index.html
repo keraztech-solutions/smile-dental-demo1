@@ -1,0 +1,1390 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lavéra Skin Atelier</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Manrope:wght@300;400;500;600;700;800&display=swap');
+
+:root{
+  --ground:#15110c;
+  --surface:#1d180f;
+  --surface-2:#262019;
+  --olive:#6e6a5d;
+  --olive-deep:#5b584d;
+  --line: rgba(216,196,158,0.14);
+  --line-strong: rgba(216,196,158,0.28);
+  --text:#f2e9da;
+  --text-dim:#c9beac;
+  --text-faint:#948a78;
+  --accent:#b4905a;
+  --accent-soft:#dcc38f;
+  --rose:#b9836f;
+  --serif:'Playfair Display', Georgia, 'Times New Roman', serif;
+  --sans:'Manrope', 'Segoe UI', system-ui, sans-serif;
+  --maxw: 1180px;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--text);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+h1,h2,h3,h4{font-family:var(--serif); font-weight:600; margin:0; text-wrap:balance;}
+p{margin:0;}
+ul{margin:0;padding:0;list-style:none;}
+button{font-family:inherit;}
+
+/* texture */
+body::before{
+  content:"";
+  position:fixed; inset:0; pointer-events:none; z-index:0;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.012) 0px, rgba(255,255,255,0.012) 1px, transparent 1px, transparent 3px);
+  mix-blend-mode:overlay;
+}
+
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 32px; position:relative; z-index:1;}
+
+/* language toggle visibility */
+[data-lang="lv"] .ru{display:none !important;}
+[data-lang="ru"] .lv{display:none !important;}
+
+/* ============ NAV ============ */
+header.site{
+  position:sticky; top:0; z-index:50;
+  background:rgba(21,17,12,0.86);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav-row{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:16px 32px; max-width:var(--maxw); margin:0 auto;
+  gap:24px;
+}
+.brand-mini{display:flex; align-items:center; gap:10px; text-decoration:none;}
+.brand-mini svg{width:30px;height:30px;flex-shrink:0;}
+.brand-mini .name{font-family:var(--serif); font-size:16px; letter-spacing:0.12em; color:var(--text);}
+.brand-mini .name b{color:var(--accent-soft); font-weight:600;}
+
+nav.links{display:flex; gap:28px; align-items:center;}
+nav.links a{
+  font-size:13px; letter-spacing:0.06em; text-transform:uppercase;
+  color:var(--text-dim); text-decoration:none; white-space:nowrap;
+  transition:color .2s ease;
+}
+nav.links a:hover, nav.links a:focus-visible{color:var(--accent-soft);}
+
+.nav-actions{display:flex; align-items:center; gap:14px;}
+
+.lang-switch{
+  display:flex; border:1px solid var(--line-strong); border-radius:999px; padding:3px;
+  background:rgba(255,255,255,0.02);
+}
+.lang-switch button{
+  border:none; background:transparent; color:var(--text-faint);
+  font-size:12px; letter-spacing:0.08em; padding:6px 13px; border-radius:999px;
+  cursor:pointer; transition:all .2s ease; font-weight:700;
+}
+.lang-switch button[aria-pressed="true"]{background:var(--accent); color:#1a1409;}
+.lang-switch button:focus-visible{outline:2px solid var(--accent-soft); outline-offset:2px;}
+
+.btn{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:11px 22px; border-radius:2px; font-size:13px; letter-spacing:0.05em;
+  text-decoration:none; cursor:pointer; border:1px solid transparent;
+  transition:transform .2s ease, background .2s ease, border-color .2s ease, color .2s ease;
+  font-weight:600;
+}
+.btn:focus-visible{outline:2px solid var(--accent-soft); outline-offset:2px;}
+.btn-gold{background:var(--accent); color:#1a1409;}
+.btn-gold:hover{background:var(--accent-soft); transform:translateY(-1px);}
+.btn-ghost{border-color:var(--line-strong); color:var(--text);}
+.btn-ghost:hover{border-color:var(--accent); color:var(--accent-soft);}
+
+.nav-toggle{display:none; background:none; border:1px solid var(--line-strong); color:var(--text); width:40px; height:40px; border-radius:2px; cursor:pointer;}
+
+/* ============ HERO ============ */
+.hero{
+  position:relative; overflow:hidden;
+  padding:96px 0 88px;
+  background:
+    radial-gradient(ellipse 900px 500px at 18% -10%, rgba(180,144,90,0.16), transparent 60%),
+    radial-gradient(ellipse 700px 600px at 100% 10%, rgba(110,106,93,0.20), transparent 55%),
+    var(--ground);
+}
+.hero-grid{
+  display:grid; grid-template-columns:1.15fr 0.85fr; gap:64px; align-items:center;
+}
+.eyebrow{
+  font-size:12px; letter-spacing:0.22em; text-transform:uppercase; color:var(--accent-soft);
+  display:flex; align-items:center; gap:10px; margin-bottom:22px; font-weight:700;
+}
+.eyebrow::before{content:""; width:28px; height:1px; background:var(--accent);}
+.hero h1{
+  font-size:clamp(40px, 5.2vw, 68px); line-height:1.04; letter-spacing:0.01em;
+}
+.hero h1 .accent-word{color:var(--accent-soft); font-style:italic; font-weight:500;}
+.hero-sub{
+  margin-top:22px; font-size:19px; color:var(--text-dim); max-width:46ch; font-weight:300;
+}
+.hero-master-line{
+  margin-top:16px; font-family:var(--serif); font-style:italic; font-size:17px; color:var(--accent-soft);
+}
+.hero-tags{display:flex; flex-wrap:wrap; gap:10px; margin-top:30px;}
+.tag{
+  border:1px solid var(--line-strong); border-radius:999px; padding:7px 16px;
+  font-size:12.5px; color:var(--text-dim); letter-spacing:0.02em;
+  display:flex; align-items:center; gap:7px;
+}
+.tag svg{width:13px;height:13px; color:var(--accent);}
+.hero-cta{display:flex; gap:14px; margin-top:38px; flex-wrap:wrap;}
+
+.hero-frame{
+  position:relative; aspect-ratio:4/5; border:1px solid var(--line-strong);
+  background:
+    radial-gradient(circle at 30% 20%, rgba(180,144,90,0.22), transparent 55%),
+    linear-gradient(160deg, var(--surface-2), var(--surface) 60%, #100d09);
+  display:flex; align-items:center; justify-content:center; flex-direction:column; gap:18px;
+  padding:30px; overflow:hidden;
+}
+.hero-frame::before, .hero-frame::after{
+  content:""; position:absolute; width:26px; height:26px; border-color:var(--accent); opacity:0.7; z-index:2;
+}
+.hero-frame::before{top:14px; left:14px; border-top:1px solid; border-left:1px solid;}
+.hero-frame::after{bottom:14px; right:14px; border-bottom:1px solid; border-right:1px solid;}
+.hero-frame .emblem{width:74px; height:74px; opacity:0.9;}
+.hero-frame .frame-label{font-family:var(--serif); font-style:italic; color:var(--text-faint); font-size:14px; text-align:center;}
+
+/* photo-slot: shows a real photo when it loads; otherwise keeps the tasteful placeholder */
+.photo-slot{position:relative;}
+.photo-slot > img{display:none; position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:1;}
+.photo-slot.has-photo > img{display:block;}
+.photo-slot.has-photo > .photo-fallback{opacity:0; pointer-events:none;}
+.hero-frame.photo-slot.has-photo{background:var(--surface);}
+.hero-frame.photo-slot.has-photo::before, .hero-frame.photo-slot.has-photo::after{opacity:0.9;}
+.photo-fallback{display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px; width:100%; height:100%;}
+
+/* ============ SECTION shared ============ */
+section{padding:110px 0; position:relative;}
+.section-alt{background:var(--surface);}
+.section-head{max-width:620px; margin-bottom:56px;}
+.section-head.center{margin-left:auto; margin-right:auto; text-align:center;}
+.kicker{
+  font-size:12px; letter-spacing:0.22em; text-transform:uppercase; color:var(--accent);
+  font-weight:700; margin-bottom:14px; display:block;
+}
+.section-head h2{font-size:clamp(28px,3.4vw,40px); letter-spacing:0.005em;}
+.section-head .lede{margin-top:16px; color:var(--text-dim); font-size:16.5px; font-weight:300;}
+
+hr.rule{border:none; border-top:1px solid var(--line); margin:0;}
+
+/* ============ PHILOSOPHY ============ */
+.philo-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:36px;}
+.philo-card{padding-right:12px;}
+.philo-card svg{width:30px;height:30px; color:var(--accent); margin-bottom:18px;}
+.philo-card h3{font-size:19px; margin-bottom:10px; font-weight:500;}
+.philo-card p{color:var(--text-dim); font-size:15px; font-weight:300;}
+
+/* ============ MASTER ============ */
+.master-grid{display:grid; grid-template-columns:340px 1fr; gap:64px; align-items:start;}
+.master-portrait{
+  aspect-ratio:3/4; border:1px solid var(--line-strong); position:relative; overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(180,144,90,0.20), transparent 60%),
+    linear-gradient(170deg, var(--olive) 0%, #322c22 65%, #17130d 100%);
+}
+.master-portrait .initials{
+  font-family:var(--serif); font-size:64px; color:rgba(242,233,218,0.85); letter-spacing:0.05em;
+}
+.master-portrait .photo-note{
+  position:absolute; bottom:16px; left:16px; right:16px; text-align:center; z-index:2;
+  font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(242,233,218,0.55);
+}
+.master-portrait.has-photo .photo-note{display:none;}
+.master-name{font-size:26px; margin-bottom:4px;}
+.master-role{font-size:13px; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent-soft); margin-bottom:26px; display:block; font-weight:700;}
+.bio-text p{color:var(--text-dim); font-size:15.5px; margin-bottom:16px; font-weight:300;}
+.bio-text p:first-of-type{color:var(--text); font-size:17px; font-family:var(--serif); font-style:italic; font-weight:400;}
+.bio-full{display:none;}
+.bio-full.open{display:block;}
+.link-toggle{
+  background:none; border:none; color:var(--accent-soft); font-size:13.5px; letter-spacing:0.03em;
+  cursor:pointer; padding:0; margin-top:6px; text-decoration:underline; text-underline-offset:4px;
+  font-weight:600;
+}
+.master-social{display:flex; gap:12px; margin-top:28px; flex-wrap:wrap;}
+
+/* ============ TREATMENTS ============ */
+.treat-list{display:flex; flex-direction:column; gap:1px; background:var(--line);}
+.treat-item{background:var(--ground);}
+.section-alt .treat-item{background:var(--surface);}
+.treat-head{
+  display:grid; grid-template-columns:1fr auto auto; gap:24px; align-items:center;
+  padding:30px 8px; cursor:pointer; width:100%; text-align:left; background:none; border:none; color:inherit;
+}
+.treat-head:focus-visible{outline:2px solid var(--accent-soft); outline-offset:-2px;}
+.treat-name{font-family:var(--serif); font-size:22px; font-weight:500;}
+.treat-name .also{display:block; font-family:var(--sans); font-size:13px; color:var(--text-faint); font-weight:400; margin-top:4px;}
+.treat-teaser{color:var(--text-dim); font-size:14.5px; max-width:60ch; margin-top:8px; font-weight:300;}
+.treat-price{font-family:var(--sans); font-size:15px; color:var(--accent-soft); font-variant-numeric:tabular-nums; white-space:nowrap; font-weight:700;}
+.chev{width:16px; height:16px; color:var(--text-faint); transition:transform .25s ease; flex-shrink:0;}
+.treat-item.open .chev{transform:rotate(135deg); color:var(--accent);}
+.treat-body{max-height:0; overflow:hidden; transition:max-height .35s ease;}
+.treat-item.open .treat-body{max-height:2400px;}
+.treat-body-inner{padding:0 8px 40px;}
+
+.ba-strip{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:10px; max-width:640px;}
+.ba-strip.single{grid-template-columns:1fr; max-width:420px;}
+.ba-panel{
+  aspect-ratio:3/2; border:1px solid var(--line-strong); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;
+  background:linear-gradient(160deg, var(--surface-2), #14100b);
+  position:relative;
+}
+.ba-panel svg{width:22px;height:22px; color:var(--text-faint);}
+.ba-panel .ba-label{font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--text-faint); font-weight:700;}
+.ba-panel.has-photo .photo-fallback{opacity:0; pointer-events:none;}
+.ba-caption{font-size:12px; color:var(--text-faint); margin-top:10px; margin-bottom:24px; font-style:italic; font-family:var(--serif);}
+
+.treat-copy{color:var(--text-dim); font-size:15px; font-weight:300; max-width:66ch;}
+.treat-copy p{margin-bottom:14px;}
+.treat-copy ul{margin:0 0 14px; padding:0;}
+.treat-copy li{position:relative; padding-left:20px; margin-bottom:7px;}
+.treat-copy li::before{content:"—"; position:absolute; left:0; color:var(--accent);}
+.treat-copy strong{color:var(--text); font-weight:600;}
+
+/* ============ PRICING ============ */
+.price-cat{border-bottom:1px solid var(--line);}
+.price-cat:first-child{border-top:1px solid var(--line);}
+.price-cat-head{
+  width:100%; display:flex; align-items:center; justify-content:space-between; gap:20px;
+  background:none; border:none; color:inherit; cursor:pointer; padding:26px 4px; text-align:left;
+}
+.price-cat-head:focus-visible{outline:2px solid var(--accent-soft); outline-offset:-2px;}
+.price-cat-head h3{font-size:21px; font-weight:500;}
+.price-cat-head .count{font-size:12.5px; color:var(--text-faint); margin-top:4px; letter-spacing:0.03em;}
+.price-cat.open .chev{transform:rotate(135deg); color:var(--accent);}
+.price-cat-body{max-height:0; overflow:hidden; transition:max-height .4s ease;}
+.price-cat.open .price-cat-body{max-height:3000px;}
+.price-rows{padding:4px 4px 32px;}
+.price-row{
+  display:flex; align-items:baseline; gap:14px; padding:13px 0; border-top:1px dotted var(--line-strong);
+}
+.price-row:first-child{border-top:none;}
+.price-row .pname{font-size:15px; color:var(--text);}
+.price-row .pname .pnote{display:block; font-size:13px; color:var(--text-faint); margin-top:3px; font-weight:300;}
+.price-leader{flex:1; border-bottom:1px dotted var(--line-strong); transform:translateY(-4px); min-width:16px;}
+.price-row .pval{font-size:15px; color:var(--accent-soft); white-space:nowrap; font-variant-numeric:tabular-nums; font-weight:700;}
+.price-note-box{
+  margin-top:6px; padding:20px 22px; border:1px solid var(--line-strong); background:rgba(180,144,90,0.05);
+  font-size:14px; color:var(--text-dim); font-weight:300;
+}
+
+/* ============ REVIEWS ============ */
+.review-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+.review-card{
+  border:1px solid var(--line); padding:30px 26px; background:var(--surface); position:relative;
+  display:flex; flex-direction:column; gap:16px;
+}
+.section-alt .review-card{background:var(--ground);}
+.review-card .quote-mark{font-family:var(--serif); font-size:44px; color:var(--rose); line-height:0.5; opacity:0.8;}
+.review-card p{font-size:14.5px; color:var(--text-dim); font-weight:300; flex:1;}
+.review-foot{display:flex; align-items:center; justify-content:space-between; padding-top:14px; border-top:1px solid var(--line);}
+.review-foot .service{font-size:12px; letter-spacing:0.05em; text-transform:uppercase; color:var(--accent-soft); font-weight:700;}
+.review-foot .stars{color:var(--accent); font-size:13px; letter-spacing:1px;}
+
+/* ============ OFFER ============ */
+.offer-box{border:1px solid var(--line-strong); background:var(--surface);}
+.section-alt .offer-box{background:var(--ground);}
+.offer-head{
+  display:flex; align-items:center; justify-content:space-between; gap:20px; padding:28px 30px; cursor:pointer;
+}
+.offer-head h3{font-size:19px; font-weight:500;}
+.offer-head .sub{font-size:13px; color:var(--text-faint); margin-top:4px;}
+.offer-body{max-height:0; overflow:hidden; transition:max-height .4s ease; border-top:0 solid var(--line);}
+.offer-box.open .offer-body{max-height:6000px; border-top:1px solid var(--line);}
+.offer-box.open .chev{transform:rotate(135deg); color:var(--accent);}
+.offer-inner{padding:32px 34px 40px; max-height:520px; overflow-y:auto;}
+.offer-inner::-webkit-scrollbar{width:8px;}
+.offer-inner::-webkit-scrollbar-thumb{background:var(--line-strong); border-radius:4px;}
+.offer-inner h4{font-family:var(--serif); font-size:16px; margin:26px 0 10px; color:var(--accent-soft);}
+.offer-inner h4:first-child{margin-top:0;}
+.offer-inner p{font-size:14px; color:var(--text-dim); font-weight:300; margin-bottom:10px;}
+.offer-inner .offer-title{font-family:var(--serif); font-size:22px; color:var(--text); margin-bottom:6px; font-weight:600;}
+.offer-inner .offer-subtitle{font-size:13.5px; color:var(--text-faint); font-style:italic; font-family:var(--serif); margin-bottom:24px;}
+.offer-bank{
+  font-family:var(--sans); font-variant-numeric:tabular-nums; letter-spacing:0.02em; font-size:13.5px;
+  padding:12px 16px; border:1px dotted var(--line-strong); display:inline-block; margin:6px 0 14px; color:var(--text);
+}
+
+/* ============ LOCATION ============ */
+.loc-grid{display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;}
+.loc-info dl{display:grid; grid-template-columns:auto 1fr; gap:16px 24px;}
+.loc-info dt{font-size:11.5px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); white-space:nowrap; padding-top:2px; font-weight:700;}
+.loc-info dd{margin:0; font-size:15.5px; color:var(--text); font-weight:300;}
+.loc-info dd .dim{color:var(--text-faint); font-size:13.5px; display:block; margin-top:3px;}
+.map-card{
+  aspect-ratio:1/1; border:1px solid var(--line-strong); position:relative; overflow:hidden;
+  background:
+    linear-gradient(160deg, var(--surface-2), var(--olive) 130%);
+  display:block; text-decoration:none; cursor:pointer;
+  transition:transform .3s ease, border-color .3s ease;
+}
+.map-card:hover, .map-card:focus-visible{transform:translateY(-3px); border-color:var(--accent);}
+.map-card:focus-visible{outline:2px solid var(--accent-soft); outline-offset:3px;}
+.map-card:hover .pin svg{color:var(--accent);}
+.map-card:hover .map-open{background:var(--accent); color:#1a1409; border-color:var(--accent);}
+.map-card .pin{position:absolute; top:50%; left:50%; transform:translate(-50%,-60%); text-align:center; pointer-events:none;}
+.map-card .pin svg{width:34px;height:34px; color:var(--accent-soft); transition:color .3s ease;}
+.map-card .pin .addr{font-family:var(--serif); font-style:italic; color:var(--text); margin-top:8px; font-size:15px;}
+.map-card::before{
+  content:""; position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(242,233,218,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(242,233,218,0.05) 1px, transparent 1px);
+  background-size:40px 40px;
+}
+.map-open{
+  position:absolute; left:16px; bottom:16px; right:16px;
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  padding:11px 16px; border:1px solid var(--line-strong); border-radius:2px;
+  background:rgba(21,17,12,0.55); backdrop-filter:blur(4px);
+  font-size:12px; letter-spacing:0.06em; text-transform:uppercase; font-weight:700;
+  color:var(--text); transition:background .25s ease, color .25s ease, border-color .25s ease;
+}
+.map-open svg{width:14px; height:14px; flex-shrink:0;}
+.hours-table{margin-top:26px; border-top:1px solid var(--line);}
+.hours-row{display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px solid var(--line); font-size:14px;}
+.hours-row .d{color:var(--text-dim); font-weight:300;}
+.hours-row .t{color:var(--text); font-variant-numeric:tabular-nums; font-weight:600;}
+
+/* ============ CONTACT / FOOTER ============ */
+.cta-band{
+  padding:90px 0; text-align:center;
+  background:
+    radial-gradient(ellipse 700px 400px at 50% 0%, rgba(180,144,90,0.14), transparent 60%),
+    var(--surface);
+  border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+}
+.cta-band .kicker{justify-content:center; display:flex;}
+.cta-band h2{max-width:640px; margin:0 auto 30px;}
+.cta-row{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
+
+footer{padding:56px 0 40px;}
+.foot-grid{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:32px;}
+.foot-brand{display:flex; align-items:center; gap:12px;}
+.foot-brand svg{width:30px;height:30px;}
+.foot-brand .name{font-family:var(--serif); font-size:16px; letter-spacing:0.1em;}
+.foot-links{display:flex; gap:28px; flex-wrap:wrap;}
+.foot-links a{font-size:13px; color:var(--text-dim); text-decoration:none;}
+.foot-links a:hover{color:var(--accent-soft);}
+.foot-bottom{
+  margin-top:40px; padding-top:24px; border-top:1px solid var(--line);
+  display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+  font-size:12.5px; color:var(--text-faint);
+}
+
+/* gentle reveal: content is visible at rest; animation (if it runs) only enhances */
+.reveal{opacity:1; transform:none;}
+@media (prefers-reduced-motion: no-preference){
+  .reveal:not(.in){transition:opacity .6s ease, transform .6s ease;}
+  .reveal.pending{opacity:0; transform:translateY(14px);}
+  .reveal.in{opacity:1; transform:none;}
+}
+
+/* whatsapp float */
+.wa-float{
+  position:fixed; right:22px; bottom:22px; z-index:60;
+  width:56px; height:56px; border-radius:50%; background:var(--accent);
+  display:flex; align-items:center; justify-content:center; text-decoration:none;
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
+  transition:transform .2s ease, background .2s ease;
+}
+.wa-float:hover{transform:translateY(-3px); background:var(--accent-soft);}
+.wa-float svg{width:26px;height:26px; color:#1a1409;}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:980px){
+  .hero-grid{grid-template-columns:1fr;}
+  .hero-frame{max-width:360px; margin:0 auto;}
+  .master-grid{grid-template-columns:1fr;}
+  .master-portrait{max-width:320px;}
+  .philo-grid{grid-template-columns:1fr; gap:32px;}
+  .review-grid{grid-template-columns:1fr 1fr;}
+  .loc-grid{grid-template-columns:1fr; gap:40px;}
+  nav.links{display:none;}
+  .nav-toggle{display:flex; align-items:center; justify-content:center;}
+}
+@media (max-width:640px){
+  .wrap{padding:0 20px;}
+  .nav-row{padding:14px 20px;}
+  section{padding:76px 0;}
+  .review-grid{grid-template-columns:1fr;}
+  .treat-head{grid-template-columns:1fr; row-gap:10px;}
+  .treat-price{order:3;}
+  .ba-strip{max-width:100%;}
+  .foot-grid{flex-direction:column;}
+  .offer-inner{padding:24px 20px 32px;}
+  .btn{padding:11px 18px;}
+}
+</style>
+
+<!-- ================= HEADER ================= -->
+<header class="site" data-lang="lv">
+  <div class="nav-row">
+    <a class="brand-mini" href="#top" aria-label="Lavéra Skin Atelier">
+      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="1.2"/><path d="M14 14 L24 34 L34 14" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M17 14 V28" stroke="currentColor" stroke-width="1.4"/></svg>
+      <span class="name">LAV<b>É</b>RA</span>
+    </a>
+    <nav class="links" aria-label="Galvenā navigācija">
+      <a href="#master" class="lv">Meistare</a><a href="#master" class="ru">Мастер</a>
+      <a href="#treatments" class="lv">Procedūras</a><a href="#treatments" class="ru">Процедуры</a>
+      <a href="#pricing" class="lv">Cenrādis</a><a href="#pricing" class="ru">Цены</a>
+      <a href="#reviews" class="lv">Atsauksmes</a><a href="#reviews" class="ru">Отзывы</a>
+      <a href="#contact" class="lv">Kontakti</a><a href="#contact" class="ru">Контакты</a>
+    </nav>
+    <div class="nav-actions">
+      <div class="lang-switch" role="group" aria-label="Language / Valoda">
+        <button type="button" data-set-lang="lv" aria-pressed="true">LV</button>
+        <button type="button" data-set-lang="ru" aria-pressed="false">RU</button>
+      </div>
+      <a class="btn btn-gold" href="https://wa.me/37126106324" target="_blank" rel="noopener">
+        <span class="lv">Pieteikties</span><span class="ru">Записаться</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow"><span class="lv">Rīga · Elizabetes iela 31</span><span class="ru">Рига · Elizabetes iela 31</span></span>
+      <h1>Lavéra <span class="accent-word">Skin Atelier</span></h1>
+      <p class="hero-sub lv">Studija dabīgai atjaunotnei. Bezoperāciju liftings, kopšana, kas balstīta uz ādas fizioloģiju, un pieeja, kurā skaistums nesāp.</p>
+      <p class="hero-sub ru">Студия естественного омоложения. Безоперационный лифтинг, уход на основе физиологии кожи и подход, в котором красота не причиняет боли.</p>
+      <p class="hero-master-line lv">Kosmetoloģe Svetlana Gavriļuka</p>
+      <p class="hero-master-line ru">Косметолог Светлана Гаврилюк</p>
+
+      <div class="hero-tags">
+        <span class="tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12c4-6 12-6 16 0-4 6-12 6-16 0Z"/><circle cx="12" cy="12" r="2.4"/></svg><span class="lv">Bezoperāciju liftings</span><span class="ru">Безоперационный лифтинг</span></span>
+        <span class="tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.6-9.3-9C1 8.4 3 5 6.5 5c2 0 3.4 1.1 4 2.2C11.1 6.1 12.5 5 14.5 5 18 5 20 8.4 18.3 12 16 16.4 12 21 12 21Z"/></svg><span class="lv">Skaistums bez sāpēm</span><span class="ru">Красота без боли</span></span>
+        <span class="tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M6 6l2 2M16 16l2 2M18 6l-2 2M8 16l-2 2"/><circle cx="12" cy="12" r="3.2"/></svg>Longevity</span>
+      </div>
+
+      <div class="hero-cta">
+        <a class="btn btn-gold" href="https://wa.me/37126106324" target="_blank" rel="noopener">
+          <span class="lv">Pieteikties vizītei</span><span class="ru">Записаться на визит</span>
+        </a>
+        <a class="btn btn-ghost" href="#pricing"><span class="lv">Skatīt cenrādi</span><span class="ru">Смотреть цены</span></a>
+        <a class="btn btn-ghost" href="https://www.instagram.com/lavera.skin.atelier/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+
+    <div class="hero-frame photo-slot" data-photo-base="background" role="img" aria-label="Lavéra Skin Atelier">
+      <img alt="Lavéra Skin Atelier">
+      <div class="photo-fallback">
+        <svg class="emblem" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="1" style="color:var(--accent-soft)"/><path d="M14 14 L24 34 L34 14" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" style="color:var(--accent-soft)"/><path d="M17 14 V28" stroke="currentColor" stroke-width="1.2" style="color:var(--accent-soft)"/></svg>
+        <p class="frame-label lv">Studijas fotogrāfija<br>tiks pievienota drīzumā</p>
+        <p class="frame-label ru">Фотография студии<br>будет добавлена позже</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PHILOSOPHY ================= -->
+<section class="section-alt">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="kicker lv">Filosofija</span><span class="kicker ru">Философия</span>
+      <h2 class="lv">Rūpes, kas balstās izpratnē — ne uz laiku</h2>
+      <h2 class="ru">Забота, основанная на понимании — не на моменте</h2>
+      <p class="lede lv">Mēs neslēpjam ādu zem produktu kārtām — mēs mācāmies to saprast. Individuāla pieeja, saudzīgas tehnikas un rezultāts, kas balstīts uz fizioloģiju.</p>
+      <p class="lede ru">Мы не прячем кожу под слоями продуктов — мы учимся её понимать. Индивидуальный подход, бережные техники и результат, основанный на физиологии.</p>
+    </div>
+
+    <div class="philo-grid">
+      <div class="philo-card reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3c4 4 7 7.2 7 11a7 7 0 1 1-14 0c0-3.8 3-7 7-11Z"/></svg>
+        <h3 class="lv">Dabīgs skaistums</h3><h3 class="ru">Естественная красота</h3>
+        <p class="lv">Tāds, ko negribas slēpt, bet gribas uzturēt — bez "iesaldēta" efekta un pārmērīgas iejaukšanās.</p>
+        <p class="ru">Такая, которую не хочется прятать, а хочется поддерживать — без «замороженного» эффекта и чрезмерного вмешательства.</p>
+      </div>
+      <div class="philo-card reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/><circle cx="12" cy="12" r="3.5"/></svg>
+        <h3 class="lv">Fizioloģisks efekts</h3><h3 class="ru">Физиологичный эффект</h3>
+        <p class="lv">Darbs ar ādas mikrocirkulāciju, limfodrenāžu un šūnu atjaunošanos — nevis maskas efekts uz pāris dienām.</p>
+        <p class="ru">Работа с микроциркуляцией, лимфодренажем и обновлением клеток кожи — а не «эффект маски» на пару дней.</p>
+      </div>
+      <div class="philo-card reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12c4-6 12-6 16 0-4 6-12 6-16 0Z"/><circle cx="12" cy="12" r="2.4"/></svg>
+        <h3 class="lv">Individuāla pieeja</h3><h3 class="ru">Индивидуальный подход</h3>
+        <p class="lv">Katrai ādai — savs protokols. Bez sarežģītiem terminiem, ar skaidrojumu katrā vizītes solī.</p>
+        <p class="ru">Для каждой кожи — свой протокол. Без сложных терминов, с объяснением на каждом этапе визита.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MASTER ================= -->
+<section id="master">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="kicker lv">Par meistari</span><span class="kicker ru">О мастере</span>
+      <h2 class="lv">Iepazīsimies</h2><h2 class="ru">Давай знакомиться</h2>
+    </div>
+
+    <div class="master-grid">
+      <div class="reveal">
+        <div class="master-portrait photo-slot" data-photo-base="master">
+          <img alt="Svetlana Gavriļuka">
+          <div class="photo-fallback">
+            <span class="initials">SG</span>
+          </div>
+          <span class="photo-note lv">Foto tiks pievienots drīzumā</span>
+          <span class="photo-note ru">Фото будет добавлено позже</span>
+        </div>
+        <div class="master-social">
+          <a class="btn btn-ghost" href="https://www.instagram.com/Svetlana.Gavriluka" target="_blank" rel="noopener">@Svetlana.Gavriluka</a>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <h3 class="master-name">Svetlana Gavriļuka</h3>
+        <span class="master-role lv">Kosmetoloģe · Lavéra Skin Atelier dibinātāja</span>
+        <span class="master-role ru">Косметолог · основательница Lavéra Skin Atelier</span>
+
+        <div class="bio-text">
+          <p class="lv">Ādas kopšana man nav tikai par skaistumu. Tā ir par rūpēm par sevi, uzmanību sev pašai un iekšēju kontaktu ar sevi.</p>
+          <p class="ru">Уход за кожей для меня — это не только про красоту. Это про заботу о себе, внимание к себе и внутренний контакт с собой.</p>
+
+          <div class="bio-full lv">
+            <p>Mani sauc Svetlana Gavriļuka, un es esmu kosmetoloģe. Tas nav vienkārši darbs — tas ir tas, ar ko es dzīvoju, ko mīlu un kam ticu.</p>
+            <p>Es esmu par dabīgu skaistumu — tādu, ko negribas slēpt, bet gluži otrādi — gribas uzturēt. Es esmu par individuālu pieeju, saudzību un par to, lai kopšana būtu saprotama, patīkama un vienlaikus tiešām efektīva.</p>
+            <p>Šeit es dalos ar noderīgu un pārbaudītu informāciju par ādas kopšanu, stāstu par līdzekļiem un dalos ar padomiem — bez pārslodzes un sarežģītiem terminiem. Visu, par ko rakstu, es rūpīgi izpētu: balstos uz savām zināšanām, zinātniskiem datiem, savu pieredzi un veselo saprātu.</p>
+            <p>Gada sākumā es uzsāku arī jaunu virzienu — mentoringu topošajiem kosmetologiem. Ja Tu tikai sāc šo ceļu un Tev pietrūkst pārliecības, skaidrības un atbalsta — es esmu līdzās. Dalos ar to, ko pati esmu pieredzējusi un kas tiešām palīdz mūsu skaistajā un sievišķīgajā profesijā sasniegt panākumus.</p>
+            <p>Paldies, ka Tu esi šeit. Ļoti gribu, lai Tev pie manis būtu mājīgi, interesanti un patiesi vērtīgi.</p>
+          </div>
+          <div class="bio-full ru">
+            <p>Меня зовут Светлана Гаврилюк, и я косметолог. Это не просто работа — это то, чем я живу, что люблю и во что верю.</p>
+            <p>Я за естественную красоту — такую, которую не хочется прятать, а наоборот, хочется поддерживать. Я за индивидуальный подход, бережность и за то, чтобы уход был понятным, приятным и при этом действительно эффективным.</p>
+            <p>Здесь я делюсь полезной и проверенной информацией об уходе за кожей, рассказываю про средства и делюсь лайфхаками — без перегруза и сложных терминов. Всё, о чём пишу, я тщательно изучаю: опираюсь на свои знания, научные данные, свой опыт и здравый смысл.</p>
+            <p>В начале года я запустила новое направление — менторинг для начинающих косметологов. Если Ты только в начале пути и Тебе не хватает уверенности, ясности и поддержки — я рядом. Делюсь тем, что прожила, через что прошла и что действительно помогает в нашей красивой и женственной профессии достичь успеха.</p>
+            <p>Спасибо, что Ты здесь. Очень хочу, чтобы Тебе у меня было уютно, интересно и по-настоящему ценно.</p>
+          </div>
+
+          <button class="link-toggle" data-bio-toggle type="button">
+            <span class="lv" data-more>Lasīt pilnu stāstu →</span><span class="ru" data-more>Читать полностью →</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TREATMENTS ================= -->
+<section class="section-alt" id="treatments">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="kicker lv">Signatūras procedūras</span><span class="kicker ru">Авторские процедуры</span>
+      <h2 class="lv">Rezultāts, ko veido fizioloģija</h2>
+      <h2 class="ru">Результат, который создаёт физиология</h2>
+      <p class="lede lv">Četras procedūras, kurām klientes atgriežas visbiežāk — no fermentu terapijas līdz botoksa alternatīvai.</p>
+      <p class="lede ru">Четыре процедуры, к которым клиентки возвращаются чаще всего — от ферментной терапии до альтернативы ботоксу.</p>
+    </div>
+
+    <div class="treat-list reveal">
+
+      <!-- Fermentu terapija -->
+      <div class="treat-item">
+        <button class="treat-head" data-treat-toggle type="button">
+          <span>
+            <span class="treat-name lv">Fermentu terapija <span class="also">DMK · Remove → Rebuild → Protect → Maintain</span></span>
+            <span class="treat-name ru">Ферментная терапия <span class="also">DMK · Remove → Rebuild → Protect → Maintain</span></span>
+            <span class="treat-teaser lv">Darbs ar ādu caur fizioloģiju — mikrocirkulācija, limfodrenāža un šūnu atjaunošanās principa vietā ātrs vizuālais efekts.</span>
+            <span class="treat-teaser ru">Работа с кожей через физиологию — микроциркуляция, лимфодренаж и обновление клеток вместо быстрого визуального эффекта.</span>
+          </span>
+          <span class="treat-price">€85 – 105</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="treat-body">
+          <div class="treat-body-inner">
+            <div class="ba-strip">
+              <div class="ba-panel photo-slot" data-photo-base="fermentu_pirms_pec">
+                <img alt="Fermentu terapija — pirms un pēc">
+                <div class="photo-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M4 16l4-4 3 3 5-6 4 4"/></svg><span class="ba-label lv">Pirms / Pēc</span><span class="ba-label ru">До / После</span></div>
+              </div>
+              <div class="ba-panel photo-slot" data-photo-base="fermentu_pirms_pec_2">
+                <img alt="Fermentu terapija — pirms un pēc, 2. attēls">
+                <div class="photo-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M4 16l4-4 3 3 5-6 4 4"/></svg><span class="ba-label lv">Pirms / Pēc</span><span class="ba-label ru">До / После</span></div>
+              </div>
+            </div>
+            <p class="ba-caption lv">Fotogrāfijas: fermentu_pirms_pec, fermentu_pirms_pec_2</p>
+            <p class="ba-caption ru">Фотографии: fermentu_pirms_pec, fermentu_pirms_pec_2</p>
+
+            <div class="treat-copy lv">
+              <p>Ādu nevar sakārtot ar krēmiem, ja tās funkcijas nestrādā. Tieši tāpēc fermentu terapija darbojas citādi. DMK fermentu terapija nav vienkārši procedūra — tas ir darbs ar ādu caur fizioloģiju.</p>
+              <p>Tā balstās uz principu <strong>Remove → Rebuild → Protect → Maintain</strong>: noņemt lieko, atjaunot funkcijas, aizsargāt, uzturēt rezultātu.</p>
+              <p><strong>Procedūras laikā:</strong></p>
+              <ul>
+                <li>uzlabojas mikrocirkulācija</li>
+                <li>pastiprinās asins pieplūde audiem</li>
+                <li>šūnas tiek bagātinātas ar skābekli</li>
+                <li>aktivizējas limfodrenāža</li>
+                <li>tiek izvadīti vielmaiņas produkti</li>
+              </ul>
+              <p>Tie ir pamata procesi, bez kuriem āda nevar pilnvērtīgi atjaunoties. Tāpēc pēc procedūras var redzēt, kā samazinās iekaisumi, ādas tonis kļūst vienmērīgāks, mazinās tūska, uzlabojas ādas blīvums un tonuss, paātrinās reģenerācija.</p>
+              <p><strong>Kāpēc tieši DMK fermenti?</strong> Tas nav "maskas efekts uz dažām dienām". DMK fermenti rada tā saukto reversās osmozes efektu — kad āda sāk strādāt pati: aktivizējas iekšējie atjaunošanās procesi, āda sāk funkcionēt, nevis tikai īslaicīgi izskatīties labāk.</p>
+              <p><strong>Procedūra ir piemērota:</strong></p>
+              <ul>
+                <li>aknes un postaknes gadījumā</li>
+                <li>pigmentācijai</li>
+                <li>blāvai ādai</li>
+                <li>tūskai</li>
+                <li>ar vecumu saistītām izmaiņām</li>
+              </ul>
+              <p>Var veikt kā vienreizēju procedūru vai kursa veidā — atkarībā no mērķa. Fermentu terapija nav par "ātru vizuālu efektu". Tā ir par ādas spēju būt veselai.</p>
+            </div>
+            <div class="treat-copy ru">
+              <p>Кожу нельзя привести в порядок кремами, если её функции не работают. Именно поэтому ферментная терапия работает иначе. DMK ферментная терапия — это не просто процедура. Это работа с кожей через физиологию.</p>
+              <p>Она основана на принципе <strong>Remove → Rebuild → Protect → Maintain</strong>: удалить лишнее, восстановить функции, защитить, поддержать результат.</p>
+              <p><strong>Во время процедуры:</strong></p>
+              <ul>
+                <li>улучшается микроциркуляция</li>
+                <li>усиливается приток крови к тканям</li>
+                <li>клетки обогащаются кислородом</li>
+                <li>активизируется лимфодренаж</li>
+                <li>выводятся продукты обмена веществ</li>
+              </ul>
+              <p>Это базовые процессы, без которых кожа не может полноценно восстанавливаться. Поэтому после процедуры уменьшаются воспаления, тон кожи становится ровнее, уменьшается отёчность, улучшается плотность и тонус кожи, ускоряется регенерация.</p>
+              <p><strong>Почему именно ферменты DMK?</strong> Потому что это не «эффект маски на пару дней». Ферменты DMK создают эффект обратного осмоса — когда кожа начинает работать сама: активизируются внутренние процессы обновления, кожа начинает функционировать, а не просто временно выглядеть лучше.</p>
+              <p><strong>Процедура подходит:</strong></p>
+              <ul>
+                <li>при акне и постакне</li>
+                <li>при пигментации</li>
+                <li>при тусклой коже</li>
+                <li>при отёчности</li>
+                <li>при возрастных изменениях</li>
+              </ul>
+              <p>Можно проводить как разовую процедуру или курсом — в зависимости от цели. Ферментная терапия — это не про «быстрый визуальный эффект». Это про способность кожи быть здоровой.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Myo-Fix -->
+      <div class="treat-item">
+        <button class="treat-head" data-treat-toggle type="button">
+          <span>
+            <span class="treat-name lv">Myo-Fix <span class="also">Meder Beauty Science · botoksa alternatīva</span></span>
+            <span class="treat-name ru">Myo-Fix <span class="also">Meder Beauty Science · альтернатива ботоксу</span></span>
+            <span class="treat-teaser lv">Neinvazīva procedūra, kas maigi samazina mīmikas muskuļu hipertonusu — bez injekcijām un atveseļošanās perioda.</span>
+            <span class="treat-teaser ru">Неинвазивная процедура, мягко снижающая гипертонус мимических мышц — без инъекций и периода восстановления.</span>
+          </span>
+          <span class="treat-price">€85</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="treat-body">
+          <div class="treat-body-inner">
+            <div class="ba-strip single">
+              <div class="ba-panel photo-slot" data-photo-base="meder_myo_fix_pirms_pec">
+                <img alt="Myo-Fix — pirms un pēc">
+                <div class="photo-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M4 16l4-4 3 3 5-6 4 4"/></svg><span class="ba-label lv">Pirms / Pēc</span><span class="ba-label ru">До / После</span></div>
+              </div>
+            </div>
+            <p class="ba-caption lv">Fotogrāfija: meder_myo_fix_pirms_pec</p>
+            <p class="ba-caption ru">Фотография: meder_myo_fix_pirms_pec</p>
+
+            <div class="treat-copy lv">
+              <p>Nevēlaties botoksu? Bet mīmikas grumbiņas tomēr gribas kontrolēt. Ja botokss šobrīd ir kontrindicēts, baidāties no injekcijām, vai nevēlaties "iesaldētu" sejas efektu — pastāv neinvazīva alternatīva.</p>
+              <p><strong>Myo-Fix</strong> no Meder Beauty Science ir profesionāla procedūra, kas maigi samazina mīmikas muskuļu hipertonusu. Rezultāts redzams pēc 5 procedūrām (1 reizi nedēļā): sejas muskuļi darbojas mierīgāk, grumbiņas kļūst mazāk izteiktas, seja izskatās atslābinātāka un svaigāka. Bez sāpēm, bez injekcijām, bez atveseļošanās perioda.</p>
+              <p><strong>Procedūras iedarbība:</strong></p>
+              <ul>
+                <li>samazina mīmikas hiperaktivitāti</li>
+                <li>izlīdzina sīkās un vidēji izteiktās grumbiņas</li>
+                <li>uzlabo mikrocirkulāciju</li>
+                <li>izlīdzina ādas tekstūru</li>
+                <li>piešķir ādai vienmērīgāku un gaišāku toni</li>
+              </ul>
+              <p>Papildus: Myo-Fix kurss palīdz pagarināt botulīna toksīna efektu, ja to uzsāk tā iedarbības beigu posmā.</p>
+              <p><strong>Ieteicamais kurss:</strong> 5–10 procedūras. Uzturošā procedūra — 1 reizi mēnesī. Mājas koncentrāts un maskas pastiprina un nostiprina rezultātu.</p>
+            </div>
+            <div class="treat-copy ru">
+              <p>Не хотите ботокс? Но мимические морщинки всё же хочется контролировать. Если ботокс сейчас противопоказан, вы боитесь инъекций или не хотите эффект «замороженного» лица — есть неинвазивная альтернатива.</p>
+              <p><strong>Myo-Fix</strong> от Meder Beauty Science — профессиональная процедура, которая мягко снижает гипертонус мимических мышц. Результат виден после 5 процедур (1 раз в неделю): мышцы лица работают спокойнее, морщинки становятся менее выраженными, лицо выглядит более расслабленным и свежим. Без боли, без инъекций, без периода восстановления.</p>
+              <p><strong>Действие процедуры:</strong></p>
+              <ul>
+                <li>снижает гиперактивность мимики</li>
+                <li>разглаживает мелкие и средне выраженные морщинки</li>
+                <li>улучшает микроциркуляцию</li>
+                <li>выравнивает текстуру кожи</li>
+                <li>придаёт коже более ровный и светлый тон</li>
+              </ul>
+              <p>Дополнительно: курс Myo-Fix помогает продлить эффект ботулотоксина, если начать его в конце периода действия.</p>
+              <p><strong>Рекомендуемый курс:</strong> 5–10 процедур. Поддерживающая процедура — 1 раз в месяц. Домашний концентрат и маски усиливают и закрепляют результат.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Express lifting -->
+      <div class="treat-item">
+        <button class="treat-head" data-treat-toggle type="button">
+          <span>
+            <span class="treat-name lv">Express liftings <span class="also">Karstās pīlinga maskas + mikrostrāvas</span></span>
+            <span class="treat-name ru">Экспресс-лифтинг <span class="also">Горячие пилинг-маски + микротоки</span></span>
+            <span class="treat-teaser lv">Ātrs, dabīgs rezultāts bez atveseļošanās perioda — ideāli pirms svarīga notikuma.</span>
+            <span class="treat-teaser ru">Быстрый, естественный результат без периода восстановления — идеально перед важным событием.</span>
+          </span>
+          <span class="treat-price">€75</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="treat-body">
+          <div class="treat-body-inner">
+            <div class="ba-strip single">
+              <div class="ba-panel photo-slot" data-photo-base="express_liftings_un_mikrostravas">
+                <img alt="Express liftings — pirms un pēc">
+                <div class="photo-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M4 16l4-4 3 3 5-6 4 4"/></svg><span class="ba-label lv">Pirms / Pēc</span><span class="ba-label ru">До / После</span></div>
+              </div>
+            </div>
+            <p class="ba-caption lv">Fotogrāfija: express_liftings_un_mikrostravas</p>
+            <p class="ba-caption ru">Фотография: express_liftings_un_mikrostravas</p>
+
+            <div class="treat-copy lv">
+              <p>Procedūra ir piemērota, ja ir ar vecumu saistītas ādas izmaiņas, blāvs vai pelēcīgs ādas tonis, nevienmērīga tekstūra un fotonovecošanās pazīmes vai pigmentācija.</p>
+              <p>Procedūras pamatā ir karstās pīlinga maskas un mikrostrāvu terapijas kombinācija. Šāds protokols ļauj vienlaikus maigi atjaunot ādu un aktivizēt fizioloģiskos procesus audos. Iedarbība ir saudzīga un dabiska: āda kļūst uzņēmīgāka pret kopjošajiem līdzekļiem, uzlabojas audu tonuss, samazinās noguruma pazīmes.</p>
+              <p><strong>Rezultāts pēc procedūras:</strong></p>
+              <ul>
+                <li>vienmērīgāks un starojošāks ādas tonis</li>
+                <li>uzlabota ādas kvalitāte un tekstūra</li>
+                <li>vizuāli izlīdzinās smalkās grumbiņas</li>
+                <li>lielāka ādas tonusa sajūta</li>
+                <li>dabisks liftinga efekts</li>
+                <li>veselīgs, atpūties sejas izskats</li>
+              </ul>
+              <p>Attēlā — rezultāts pēc 1 procedūras. Īpaši piemērota pirms svarīgiem notikumiem, kad nepieciešams ātrs, bet vienlaikus dabisks un saudzīgs rezultāts bez atjaunošanās perioda.</p>
+            </div>
+            <div class="treat-copy ru">
+              <p>Процедура подходит при возрастных изменениях кожи, тусклом или сероватом тоне, неровной текстуре и признаках фотостарения или пигментации.</p>
+              <p>В основе процедуры — сочетание горячих пилинг-масок и микротоковой терапии. Такой протокол позволяет одновременно бережно обновить кожу и активизировать физиологические процессы в тканях. Действие мягкое и естественное: кожа становится более восприимчивой к уходовым средствам, улучшается тонус тканей, уменьшаются признаки усталости.</p>
+              <p><strong>Результат после процедуры:</strong></p>
+              <ul>
+                <li>более ровный и сияющий тон кожи</li>
+                <li>улучшенное качество и текстура кожи</li>
+                <li>визуально разглаживаются мелкие морщинки</li>
+                <li>ощущение большего тонуса кожи</li>
+                <li>естественный эффект лифтинга</li>
+                <li>здоровый, отдохнувший вид лица</li>
+              </ul>
+              <p>На фото — результат после 1 процедуры. Особенно подходит перед важными событиями, когда нужен быстрый, но при этом естественный и бережный результат без периода восстановления.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rozacea -->
+      <div class="treat-item">
+        <button class="treat-head" data-treat-toggle type="button">
+          <span>
+            <span class="treat-name lv">Rozācijas korekcija <span class="also">Kuperoze · pastāvīgs apsārtums</span></span>
+            <span class="treat-name ru">Коррекция розацеа <span class="also">Купероз · стойкое покраснение</span></span>
+            <span class="treat-teaser lv">Ilgstoša remisija ar pareizu mājas kopšanu, saudzīgām procedūrām un individuālu pieeju.</span>
+            <span class="treat-teaser ru">Долгая ремиссия при правильном домашнем уходе, бережных процедурах и индивидуальном подходе.</span>
+          </span>
+          <span class="treat-price">€95</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="treat-body">
+          <div class="treat-body-inner">
+            <div class="ba-strip single">
+              <div class="ba-panel photo-slot" data-photo-base="pirms_pec_rozacea">
+                <img alt="Rozācijas korekcija — pirms un pēc">
+                <div class="photo-fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M4 16l4-4 3 3 5-6 4 4"/></svg><span class="ba-label lv">Pirms / Pēc</span><span class="ba-label ru">До / После</span></div>
+              </div>
+            </div>
+            <p class="ba-caption lv">Fotogrāfija: pirms_pec_rozacea</p>
+            <p class="ba-caption ru">Фотография: pirms_pec_rozacea</p>
+
+            <div class="treat-copy lv">
+              <p>Rozācija ir hroniska iekaisīga ādas slimība. Visbiežāk tā izpaužas kā noturīgs vaigu, deguna, zoda vai pieres apsārtums. Laika gaitā var parādīties paplašināti asinsvadi, dedzināšanas sajūta, paaugstināta ādas jutība un iekaisuma elementi, ko bieži sajauc ar aknes izsitumiem.</p>
+              <p>Diemžēl rozācija pati no sevis nepāriet. Ja to neārstē un nenovērš provocējošos faktorus, slimība var progresēt: apsārtums kļūst noturīgāks, asinsvadu tīkliņš — izteiktāks, bet paasinājumi — biežāki un ilgstošāki.</p>
+              <p>Labā ziņa ir tā, ka ar rozāciju var strādāt. Pareizi izvēlēta mājas kopšana, saudzīgas profesionālās procedūras un individuāla pieeja palīdz mazināt apsārtumu, samazināt ādas jutību un panākt ilgstošu remisiju.</p>
+              <p>Prakses gadu laikā esmu palīdzējusi jau desmitiem sieviešu savaldīt rozāciju un atgriezt ādai mierīgu, veselīgu izskatu.</p>
+            </div>
+            <div class="treat-copy ru">
+              <p>Розацеа — это хроническое воспалительное заболевание кожи. Чаще всего оно проявляется стойким покраснением щёк, носа, подбородка или лба. Со временем могут появляться расширенные сосуды, ощущение жжения, повышенная чувствительность кожи и воспалительные элементы, которые нередко принимают за акне.</p>
+              <p>К сожалению, розацеа не проходит сама по себе. Если не заниматься её лечением и не устранить провоцирующие факторы, заболевание может прогрессировать: покраснение становится более стойким, сосудистая сетка — более выраженной, а обострения — более частыми и длительными.</p>
+              <p>Хорошая новость в том, что с розацеа можно работать. Правильно подобранный домашний уход, бережные профессиональные процедуры и индивидуальный подход помогают уменьшить покраснение, снизить чувствительность кожи и добиться длительной ремиссии.</p>
+              <p>За годы практики я помогла уже десяткам женщин взять розацеа под контроль и вернуть коже спокойный, здоровый вид.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRICING ================= -->
+<section id="pricing">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="kicker lv">Cenrādis</span><span class="kicker ru">Прайс-лист</span>
+      <h2 class="lv">Pilns pakalpojumu klāsts</h2><h2 class="ru">Полный перечень услуг</h2>
+      <p class="lede lv">Spied uz kategorijas, lai atvērtu detalizētu cenrādi. Precīzu cenu individuāli nosaka konsultācijā.</p>
+      <p class="lede ru">Нажмите на категорию, чтобы открыть подробный прайс. Точная цена определяется индивидуально на консультации.</p>
+    </div>
+
+    <div class="reveal" id="price-accordion">
+
+      <div class="price-cat">
+        <button class="price-cat-head" data-price-toggle type="button">
+          <span><h3 class="lv">Konsultācijas</h3><h3 class="ru">Консультации</h3><span class="count lv">2 pakalpojumi</span><span class="count ru">2 услуги</span></span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="price-cat-body"><div class="price-rows">
+          <div class="price-row"><span class="pname lv">Klātienes konsultācija</span><span class="pname ru">Очная консультация</span><span class="price-leader"></span><span class="pval">€70</span></div>
+          <div class="price-row"><span class="pname lv">Online konsultācija</span><span class="pname ru">Онлайн-консультация</span><span class="price-leader"></span><span class="pval">€70</span></div>
+        </div></div>
+      </div>
+
+      <div class="price-cat">
+        <button class="price-cat-head" data-price-toggle type="button">
+          <span><h3 class="lv">Sejas tīrīšana</h3><h3 class="ru">Чистка лица</h3><span class="count lv">4 pakalpojumi</span><span class="count ru">4 услуги</span></span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="price-cat-body"><div class="price-rows">
+          <div class="price-row"><span class="pname lv">US sejas tīrīšana</span><span class="pname ru">УЗ-чистка лица</span><span class="price-leader"></span><span class="pval">€70 – 75</span></div>
+          <div class="price-row"><span class="pname lv">Kombinēta sejas tīrīšana</span><span class="pname ru">Комбинированная чистка</span><span class="price-leader"></span><span class="pval">€75 – 90</span></div>
+          <div class="price-row"><span class="pname lv">Mehāniska / manuāla sejas tīrīšana</span><span class="pname ru">Механическая / мануальная чистка</span><span class="price-leader"></span><span class="pval">€85 – 95</span></div>
+          <div class="price-row"><span class="pname lv">Atraumatiska sejas tīrīšana ar fermentu terapiju</span><span class="pname ru">Атравматичная чистка с ферментной терапией</span><span class="price-leader"></span><span class="pval">€95 – 105</span></div>
+        </div></div>
+      </div>
+
+      <div class="price-cat">
+        <button class="price-cat-head" data-price-toggle type="button">
+          <span><h3 class="lv">Sejas masāžas</h3><h3 class="ru">Массаж лица</h3><span class="count lv">3 pakalpojumi</span><span class="count ru">3 услуги</span></span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="price-cat-body"><div class="price-rows">
+          <div class="price-row"><span class="pname lv">Klasiskā sejas masāža <span class="pnote">Tikai kopjošas procedūras ietvaros</span></span><span class="pname ru">Классический массаж лица <span class="pnote">Только в рамках уходовой процедуры</span></span><span class="price-leader"></span><span class="pval">€30</span></div>
+          <div class="price-row"><span class="pname lv">BMS — sejas modelējoša biomehāniska masāža</span><span class="pname ru">BMS — биомеханический моделирующий массаж</span><span class="price-leader"></span><span class="pval">€70</span></div>
+          <div class="price-row"><span class="pname lv">BMS masāža kopjošas procedūras ietvaros</span><span class="pname ru">BMS в рамках уходовой процедуры</span><span class="price-leader"></span><span class="pval">€50</span></div>
+        </div></div>
+      </div>
+
+      <div class="price-cat">
+        <button class="price-cat-head" data-price-toggle type="button">
+          <span><h3 class="lv">Meder procedūras</h3><h3 class="ru">Процедуры Meder</h3><span class="count lv">6 pakalpojumi</span><span class="count ru">6 услуг</span></span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="price-cat-body"><div class="price-rows">
+          <div class="price-row"><span class="pname">Hydra-Fill <span class="pnote lv">Dziļi mitrinoša procedūra</span><span class="pnote ru">Глубоко увлажняющая процедура</span></span><span class="price-leader"></span><span class="pval">€80</span></div>
+          <div class="price-row"><span class="pname">Arma-Lift <span class="pnote lv">Liftinga procedūra</span><span class="pnote ru">Лифтинг-процедура</span></span><span class="price-leader"></span><span class="pval">€80</span></div>
+          <div class="price-row"><span class="pname">Myo-Fix <span class="pnote lv">Botoksa alternatīva</span><span class="pnote ru">Альтернатива ботоксу</span></span><span class="price-leader"></span><span class="pval">€85</span></div>
+          <div class="price-row"><span class="pname">Lipo-Oval <span class="pnote lv">Sejas skulpturējoša procedūra</span><span class="pnote ru">Скульптурирующая процедура</span></span><span class="price-leader"></span><span class="pval">€80</span></div>
+          <div class="price-row"><span class="pname">Red-Apax <span class="pnote lv">Pret apsārtumu</span><span class="pnote ru">Против покраснений</span></span><span class="price-leader"></span><span class="pval">€80</span></div>
+          <div class="price-row"><span class="pname">Eu-Seb <span class="pnote lv">Taukainai / problemātiskai ādai</span><span class="pnote ru">Для жирной / проблемной кожи</span></span><span class="price-leader"></span><span class="pval">€80</span></div>
+        </div></div>
+      </div>
+
+      <div class="price-cat">
+        <button class="price-cat-head" data-price-toggle type="button">
+          <span><h3 class="lv">Dermalogica bāzes procedūras</h3><h3 class="ru">Базовые процедуры Dermalogica</h3><span class="count lv">1 pakalpojums</span><span class="count ru">1 услуга</span></span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="price-cat-body"><div class="price-rows">
+          <div class="price-row"><span class="pname lv">Nomierinoša, mitrinoša vai atjaunojoša sejas procedūra</span><span class="pname ru">Успокаивающая, увлажняющая или восстанавливающая процедура</span><span class="price-leader"></span><span class="pval">€70 – 75</span></div>
+        </div></div>
+      </div>
+
+      <div class="price-cat">
+        <button class="price-cat-head" data-price-toggle type="button">
+          <span><h3 class="lv">DMK procedūras</h3><h3 class="ru">Процедуры DMK</h3><span class="count lv">13 pakalpojumi</span><span class="count ru">13 услуг</span></span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="price-cat-body"><div class="price-rows">
+          <div class="price-row"><span class="pname lv">Fermentu terapija</span><span class="pname ru">Ферментная терапия</span><span class="price-leader"></span><span class="pval">€85 – 105</span></div>
+          <div class="price-row"><span class="pname">"Līgavas māte" <span class="pnote lv">Liftinga procedūra</span><span class="pnote ru">Лифтинг-процедура «Мать невесты»</span></span><span class="price-leader"></span><span class="pval">€100</span></div>
+          <div class="price-row"><span class="pname lv">Express liftinga procedūra</span><span class="pname ru">Экспресс-лифтинг</span><span class="price-leader"></span><span class="pval">€75</span></div>
+          <div class="price-row"><span class="pname">"Kolagēna pompa" <span class="pnote lv">Procedūra</span><span class="pnote ru">Процедура «Коллагеновый насос»</span></span><span class="price-leader"></span><span class="pval">€75</span></div>
+          <div class="price-row"><span class="pname">"Eye fusion"</span><span class="price-leader"></span><span class="pval">€60</span></div>
+          <div class="price-row"><span class="pname lv">Kuperozes / rozācijas korekcija</span><span class="pname ru">Коррекция купероза / розацеа</span><span class="price-leader"></span><span class="pval">€95</span></div>
+          <div class="price-row"><span class="pname lv">Hiperpigmentācijas korekcija</span><span class="pname ru">Коррекция гиперпигментации</span><span class="price-leader"></span><span class="pval">€95</span></div>
+          <div class="price-row"><span class="pname lv">Mīlumu korekcija</span><span class="pname ru">Коррекция «Mīlumu»</span><span class="price-leader"></span><span class="pval">€85 – 95</span></div>
+          <div class="price-row"><span class="pname lv">Aknes korekcija</span><span class="pname ru">Коррекция акне</span><span class="price-leader"></span><span class="pval">€90 – 100</span></div>
+          <div class="price-row"><span class="pname lv">Procedūras pie rētām, paplašinātām porām</span><span class="pname ru">Процедуры при рубцах, расширенных порах</span><span class="price-leader"></span><span class="pval lv">no €95</span><span class="pval ru">от €95</span></div>
+          <div class="price-row"><span class="pname">"RP - Revision" <span class="pnote lv">Programma, cena par visu kursu</span><span class="pnote ru">Программа, цена за весь курс</span></span><span class="price-leader"></span><span class="pval">€380</span></div>
+          <div class="price-row"><span class="pname lv">"6-kārtu pīlinga" programma <span class="pnote">Cena par visu kursu</span></span><span class="pname ru">Программа «6-слойный пилинг» <span class="pnote">Цена за весь курс</span></span><span class="price-leader"></span><span class="pval">€380</span></div>
+          <div class="price-row"><span class="pname lv">"Šķidrā lāzera" programma <span class="pnote">Cena par visu kursu</span></span><span class="pname ru">Программа «Жидкий лазер» <span class="pnote">Цена за весь курс</span></span><span class="price-leader"></span><span class="pval">€380</span></div>
+          <div class="price-row"><span class="pname lv">Estētiskā liftinga programma <span class="pnote">Cena par 1 procedūru</span></span><span class="pname ru">Программа эстетического лифтинга <span class="pnote">Цена за 1 процедуру</span></span><span class="price-leader"></span><span class="pval">€95</span></div>
+          <div class="price-row"><span class="pname lv">Sejas ovāla korekcijas programma <span class="pnote">Cena par 1 procedūru</span></span><span class="pname ru">Программа коррекции овала лица <span class="pnote">Цена за 1 процедуру</span></span><span class="price-leader"></span><span class="pval">€95</span></div>
+        </div></div>
+      </div>
+
+      <div class="price-cat">
+        <button class="price-cat-head" data-price-toggle type="button">
+          <span><h3 class="lv">Aparātprocedūras</h3><h3 class="ru">Аппаратные процедуры</h3><span class="count lv">8 pakalpojumi</span><span class="count ru">8 услуг</span></span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="price-cat-body"><div class="price-rows">
+          <div class="price-row"><span class="pname">D'arsonval</span><span class="price-leader"></span><span class="pval">€10</span></div>
+          <div class="price-row"><span class="pname lv">Mikrostrāvu terapija</span><span class="pname ru">Микротоковая терапия</span><span class="price-leader"></span><span class="pval lv">no €70</span><span class="pval ru">от €70</span></div>
+          <div class="price-row"><span class="pname lv">Express mikrostrāvas</span><span class="pname ru">Экспресс-микротоки</span><span class="price-leader"></span><span class="pval">€20</span></div>
+          <div class="price-row"><span class="pname lv">LED terapija</span><span class="pname ru">LED-терапия</span><span class="price-leader"></span><span class="pval">€55 – 60</span></div>
+          <div class="price-row"><span class="pname lv">LED terapija procedūras ietvaros</span><span class="pname ru">LED-терапия в рамках процедуры</span><span class="price-leader"></span><span class="pval">€20 – 30</span></div>
+          <div class="price-row"><span class="pname lv">Frakcionētā mezoterapija</span><span class="pname ru">Фракционная мезотерапия</span><span class="price-leader"></span><span class="pval">€80 – 160</span></div>
+          <div class="price-row"><span class="pname lv">Mezoporācija</span><span class="pname ru">Мезопорация</span><span class="price-leader"></span><span class="pval lv">sākot no €70</span><span class="pval ru">от €70</span></div>
+          <div class="price-row"><span class="pname lv">Express mezoporācija</span><span class="pname ru">Экспресс-мезопорация</span><span class="price-leader"></span><span class="pval">€20</span></div>
+        </div></div>
+      </div>
+
+      <div class="price-cat">
+        <button class="price-cat-head" data-price-toggle type="button">
+          <span><h3 class="lv">Ķīmiskie pīlingi</h3><h3 class="ru">Химические пилинги</h3><span class="count lv">7 pakalpojumi</span><span class="count ru">7 услуг</span></span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="price-cat-body"><div class="price-rows">
+          <div class="price-row"><span class="pname">BioRePeel</span><span class="price-leader"></span><span class="pval">€90</span></div>
+          <div class="price-row"><span class="pname">PQ Age Evolution</span><span class="price-leader"></span><span class="pval">€90</span></div>
+          <div class="price-row"><span class="pname">Oenanthe</span><span class="price-leader"></span><span class="pval">€90</span></div>
+          <div class="price-row"><span class="pname">Esabiopeel</span><span class="price-leader"></span><span class="pval">€90</span></div>
+          <div class="price-row"><span class="pname">TMC 3+</span><span class="price-leader"></span><span class="pval">€90</span></div>
+          <div class="price-row"><span class="pname">Biot 2</span><span class="price-leader"></span><span class="pval">€90</span></div>
+          <div class="price-row"><span class="pname">Bior 5</span><span class="price-leader"></span><span class="pval">€90 – 220</span></div>
+        </div></div>
+      </div>
+
+      <div class="price-cat">
+        <button class="price-cat-head" data-price-toggle type="button">
+          <span><h3 class="lv">Injekcijas</h3><h3 class="ru">Инъекции</h3><span class="count lv">7 pakalpojumi</span><span class="count ru">7 услуг</span></span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="price-cat-body"><div class="price-rows">
+          <div class="price-row"><span class="pname lv">Sejas ādas mezoterapija <span class="pnote">RRS, Apriline, ABG Lab – Meso Warton, Meso Xanthin</span></span><span class="pname ru">Мезотерапия кожи лица <span class="pnote">RRS, Apriline, ABG Lab – Meso Warton, Meso Xanthin</span></span><span class="price-leader"></span><span class="pval">€120 – 190</span></div>
+          <div class="price-row"><span class="pname lv">Galvas ādas mezoterapija <span class="pnote">RRS, Apriline, Dr.Cyj Hair Filler</span></span><span class="pname ru">Мезотерапия кожи головы <span class="pnote">RRS, Apriline, Dr.Cyj Hair Filler</span></span><span class="price-leader"></span><span class="pval">€80 – 150</span></div>
+          <div class="price-row"><span class="pname lv">Mezoterapija acu zonai <span class="pnote">RRS HA eyes, MesoEye C71</span></span><span class="pname ru">Мезотерапия зоны глаз <span class="pnote">RRS HA eyes, MesoEye C71</span></span><span class="price-leader"></span><span class="pval">€80 – 190</span></div>
+          <div class="price-row"><span class="pname lv">Lipolītiķi sejai, ķermenim <span class="pnote">RRS, Cell Booster</span></span><span class="pname ru">Липолитики для лица, тела <span class="pnote">RRS, Cell Booster</span></span><span class="price-leader"></span><span class="pval lv">no €80</span><span class="pval ru">от €80</span></div>
+          <div class="price-row"><span class="pname lv">Biorevitalizācija <span class="pnote">Sunekos, Jalupro</span></span><span class="pname ru">Биоревитализация <span class="pnote">Sunekos, Jalupro</span></span><span class="price-leader"></span><span class="pval lv">no €160</span><span class="pval ru">от €160</span></div>
+          <div class="price-row"><span class="pname lv">Biorevitalizācija ķermenim <span class="pnote">Sunekos</span></span><span class="pname ru">Биоревитализация тела <span class="pnote">Sunekos</span></span><span class="price-leader"></span><span class="pval lv">no €250</span><span class="pval ru">от €250</span></div>
+          <div class="price-row"><span class="pname lv">Polinukleotīdi <span class="pnote">Plinest, Nucleofill</span></span><span class="pname ru">Полинуклеотиды <span class="pnote">Plinest, Nucleofill</span></span><span class="price-leader"></span><span class="pval lv">no €160</span><span class="pval ru">от €160</span></div>
+        </div></div>
+      </div>
+
+      <div class="price-cat">
+        <button class="price-cat-head" data-price-toggle type="button">
+          <span><h3 class="lv">Abonementi</h3><h3 class="ru">Абонементы</h3><span class="count lv">2 piedāvājumi</span><span class="count ru">2 предложения</span></span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="price-cat-body"><div class="price-rows">
+          <div class="price-note-box lv">Iegādājoties 5 procedūras — 1 dāvanā. Iegādājoties 10 procedūras — 2 dāvanā.</div>
+          <div class="price-note-box ru">При покупке 5 процедур — 1 в подарок. При покупке 10 процедур — 2 в подарок.</div>
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= REVIEWS ================= -->
+<section class="section-alt" id="reviews">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="kicker lv">Atsauksmes</span><span class="kicker ru">Отзывы</span>
+      <h2 class="lv">Ko saka klientes</h2><h2 class="ru">Что говорят клиентки</h2>
+    </div>
+
+    <div class="review-grid reveal">
+
+      <div class="review-card">
+        <span class="quote-mark">"</span>
+        <p class="lv">Pirmo reizi izmēģināju BMS masāžu pēc Svetlanas ieteikuma — procedūra izvēlēta atbilstoši sejas ādas stāvoklim. Pievilkšanas un svaiguma efekts bija jūtams uzreiz un turējās vismaz nedēļu. Noteikti nākšu atkārtoti!</p>
+        <p class="ru">Впервые испробовала БМС массаж по совету Светланы. Подобрали именно эту процедуру, исходя из состояния кожи лица. Эффект подтянутости и свежести лица был заметен моментально и держался минимум неделю. Обязательно приду на него повторно!</p>
+        <div class="review-foot"><span class="service lv">BMS masāža</span><span class="service ru">BMS массаж</span><span class="stars">★★★★★</span></div>
+      </div>
+
+      <div class="review-card">
+        <span class="quote-mark">"</span>
+        <p class="lv">Paldies, jūtos lieliski pēc "Līgavas mātes" procedūras! Āda tik ļoti mirdzēja, grumbiņas nedaudz izlīdzinājās — visu vakaru draudzenes prasīja, ko esmu darījusi ar ādu. Šo procedūru vajadzēs atkārtot arī pirms meitas kāzām!</p>
+        <p class="ru">Спасибо, чувствую себя отлично после «Мать невесты»! Кожа таак сияла, морщинки подразгладились — все окружающие дамы весь вечер меня спрашивали, что я сделала с кожей лица. Эту процедуру надо будет повторить ещё перед свадьбой дочки!</p>
+        <div class="review-foot"><span class="service lv">"Līgavas māte"</span><span class="service ru">«Мать невесты»</span><span class="stars">★★★★★</span></div>
+      </div>
+
+      <div class="review-card">
+        <span class="quote-mark">"</span>
+        <p class="lv">Āda patiešām atdzīvojās pēc Hydra-Fill procedūras — sīkās grumbiņas izlīdzinājās, seja kļuva gluda un piepildīta. Āda manāmi kļuvusi mitrāka un svaigāka. Esmu sajūsmā par procedūru un noteikti atkārtošu!</p>
+        <p class="ru">Кожа действительно ожила после гидрафила — мелкие морщинки разгладились, а личико стало гладким и наполненным. Кожа заметно увлажнилась и посвежела! Так что я в восторге от процедуры! Надеюсь в след. раз повторим!</p>
+        <div class="review-foot"><span class="service">Hydra-Fill</span><span class="stars">★★★★★</span></div>
+      </div>
+
+      <div class="review-card">
+        <span class="quote-mark">"</span>
+        <p class="lv">Pirmkārt esmu ļoti priecīga, ka esmu Jūs atradusi kā savu kosmetalogu! Tik dziļu relaksu sejai un visam ķermenim nebiju izjutusi nekad. Pēc procedūras bija tāds enerģijas uzplūdums, ka biju gatava kalnus gāzt. Paldies, ka katru reizi pārsteidzat ar kaut ko jaunu!</p>
+        <p class="ru">Во-первых, я очень рада, что нашла именно Вас как своего косметолога! Такого глубокого расслабления для лица и всего тела я не испытывала никогда. После процедуры был такой прилив энергии, что была готова горы свернуть. Спасибо, что каждый раз удивляете чем-то новым!</p>
+        <div class="review-foot"><span class="service lv">BMS masāža</span><span class="service ru">BMS массаж</span><span class="stars">★★★★★</span></div>
+      </div>
+
+      <div class="review-card">
+        <span class="quote-mark">"</span>
+        <p class="lv">Vibro masāža patiešām bija fantastiska. Katrs muskulītis saņēma patīkamu izturēšanos, nevis triecienu. Pēc masāžas bija sajūta, ka viss ķermenis būtu saņēmis šo patīkamo procedūru. Jutu katru ādas milimetru. Paldies par baudījumu un rezultātu. — Sandra</p>
+        <p class="ru">Вибро-массаж действительно был фантастическим. Каждая мышца получила приятное воздействие, а не удар. После массажа было ощущение, что всё тело получило эту приятную процедуру. Чувствовала каждый миллиметр кожи. Спасибо за удовольствие и результат. — Sandra</p>
+        <div class="review-foot"><span class="service lv">BMS masāža</span><span class="service ru">BMS массаж</span><span class="stars">★★★★★</span></div>
+      </div>
+
+      <div class="review-card">
+        <span class="quote-mark">"</span>
+        <p class="lv">Vēlreiz gribu pateikties par procedūru — tā ir vienkārši bumba! Nekad nedomāju, ka pieres kroku iemesls var būt ādas sausums. Piere kļuvusi gludāka, un grumbas tagad ir mazāk manāmas. Esmu sajūsmā par Hydra-Fill procedūru un noteikti nākšu atkal!</p>
+        <p class="ru">Ещё раз хочу сказать спасибо за процедуру — это просто бомба! Никогда не думала, что заломы на лбу могут быть вследствие сухости кожи. Лоб стал более гладким и морщины теперь менее заметны. Честно, я в полном восторге от гидрафил процедурки и обязательно приду ещё!</p>
+        <div class="review-foot"><span class="service">Hydra-Fill</span><span class="stars">★★★★★</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= PUBLIC OFFER ================= -->
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="kicker lv">Juridiskā informācija</span><span class="kicker ru">Юридическая информация</span>
+      <h2 class="lv">Publiskais piedāvājums</h2><h2 class="ru">Публичная оферта</h2>
+      <p class="lede lv">Pieraksta un pakalpojumu sniegšanas nosacījumi.</p>
+      <p class="lede ru">Условия записи и предоставления услуг.</p>
+    </div>
+
+    <div class="offer-box reveal" id="offer-box">
+      <button class="offer-head" data-offer-toggle type="button">
+        <span>
+          <h3 class="lv">Lasīt pilnu publisko piedāvājumu</h3>
+          <h3 class="ru">Читать полную публичную оферту</h3>
+          <span class="sub lv">Pieraksta, apmaksas un atcelšanas noteikumi</span>
+          <span class="sub ru">Условия записи, оплаты и отмены</span>
+        </span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="offer-body">
+        <div class="offer-inner">
+
+          <div class="lv">
+            <p class="offer-title">Publiskais piedāvājums</p>
+            <p class="offer-subtitle">par pierakstu uz kosmetoloģiskajiem pakalpojumiem un to sniegšanas nosacījumiem</p>
+            <p>Šis Publiskais piedāvājums ir Svetlanas Gavriļukas (turpmāk — "Izpildītājs") oficiāls piedāvājums jebkurai personai (turpmāk — "Klients") noslēgt līgumu uz zemāk norādītajiem nosacījumiem.</p>
+
+            <h4>1. Vispārīgie noteikumi</h4>
+            <p>1.1. Izpildītājs sniedz kosmetoloģiskos pakalpojumus saskaņā ar aktuālo cenrādi.</p>
+            <p>1.2. Aktuālais cenrādis ir pieejams: Izpildītāja tiešsaistes lapā https://taplink.cc/lavera, kā arī Izpildītāja Instagram profilā @lavera.skin.atelier sadaļā "Highlights" — "Pricelist".</p>
+            <p>1.3. Šis Publiskais piedāvājums nosaka pieraksta kārtību, pakalpojumu sniegšanas nosacījumus, kā arī pieraksta atcelšanas un pārcelšanas kārtību.</p>
+            <p>1.4. Pieraksta veikšana un samaksa par Izpildītāja laika rezervāciju nozīmē Klienta pilnīgu un bezierunu piekrišanu šī Publiskā piedāvājuma noteikumiem.</p>
+
+            <h4>2. Pieraksta nosacījumi</h4>
+            <p>2.1. Lai veiktu pierakstu, Klientam jānorāda vārds, uzvārds un kontakttālruņa numurs.</p>
+            <p>2.2. Pieraksts tiek apstiprināts tikai pēc maksājuma veikšanas par Izpildītāja laika rezervāciju 45 eiro apmērā, ja vien Izpildītājs nav norādījis citu summu.</p>
+            <p>2.3. Līdz maksājuma saņemšanai pieraksts tiek uzskatīts par provizorisku, netiek uzskatīts par apstiprinātu un negarantē izvēlētā laika rezervāciju Klientam.</p>
+            <p>2.4. Samaksa par Izpildītāja laika rezervāciju ir obligāts nosacījums pieraksta apstiprināšanai.</p>
+            <p>2.5. Samaksa par Izpildītāja laika rezervāciju tiek ieskaitīta pakalpojuma kopējā cenā. Vizītes dienā Klients apmaksā starpību starp izvēlētā pakalpojuma cenu un jau iemaksāto summu.</p>
+            <p>2.6. Samaksa par Izpildītāja laika rezervāciju ir neatgriežama.</p>
+
+            <h4>3. Maksājumu kārtība</h4>
+            <p>3.1. Samaksa par Izpildītāja laika rezervāciju tiek veikta ar bankas pārskaitījumu:</p>
+            <div class="offer-bank">SVETLANA GAVRIĻUKA<br>LV22HABA0551050333988</div>
+            <p>3.2. Maksājuma mērķī Klientam obligāti jānorāda: Vizītes laika rezervācija (datums) plkst. (laiks).</p>
+            <p>3.3. Ja maksājuma mērķis nav norādīts vai ir norādīts nekorekti, Izpildītājam ir tiesības neapstiprināt pierakstu.</p>
+            <p>3.4. Naudas līdzekļi, kas pārskaitīti bez korekti norādīta maksājuma mērķa, tiek atgriezti maksātājam. Šādā gadījumā pieraksts netiek uzskatīts par apstiprinātu līdz korekti veikta maksājuma saņemšanai.</p>
+
+            <h4>4. Pieraksta atcelšana un pārcelšana</h4>
+            <p>4.1. Ja Klients informē Izpildītāju vismaz 48 stundas iepriekš, pierakstu var pārcelt vienu reizi, nezaudējot iemaksāto summu.</p>
+            <p>4.2. Atkārtotas vizītes pārcelšanas gadījumā iemaksātā summa netiek saglabāta. Jauns pieraksts iespējams tikai pēc jaunas rezervācijas maksas veikšanas.</p>
+            <p>4.3. Ja pieraksts tiek atcelts mazāk nekā 48 stundas pirms vizītes, iemaksātā summa tiek zaudēta.</p>
+            <p>4.4. Izņēmuma gadījumā, kas saistīts ar slimību, Izpildītājs var pārcelt pierakstu bez iemaksas zaudēšanas arī tad, ja paziņojums veikts mazāk nekā 48 stundas iepriekš.</p>
+            <p>4.5. Šī iespēja tiek piešķirta vienu reizi. Atkārtotas atcelšanas, neierašanās, aizmirstas vizītes vai citu Klienta iemeslu gadījumā iemaksātā summa netiek saglabāta, un jauns pieraksts iespējams tikai pēc jaunas samaksas.</p>
+            <p>4.6. Klients apņemas atbildīgi izturēties pret pierakstu un ņemt vērā savu veselības stāvokli, izvēloties vizītes datumu.</p>
+
+            <h4>5. Procedūru veikšanas nosacījumi</h4>
+            <p>5.1. Pirms jebkuras procedūras Klientam ir pienākums: aizpildīt klienta karti (anamnēzi); sniegt patiesu informāciju par veselības stāvokli; parakstīt informēto piekrišanu.</p>
+            <p>5.2. Klientam ir pienākums informēt Izpildītāju par infekcijas slimību esamību, tostarp aktīvu herpes infekciju, kā arī akūtu vīrusu vai zarnu slimību pazīmēm.</p>
+            <p>5.3. Informētā piekrišana tiek parakstīta tieši pirms procedūras.</p>
+            <p>5.4. Klientam ir tiesības iepriekš iepazīties ar informētās piekrišanas tekstu un klienta karti, pieprasot tos no Izpildītāja pirms vizītes.</p>
+            <p>5.5. Ja Klients atsakās aizpildīt klienta karti un/vai parakstīt informēto piekrišanu, Izpildītājam ir tiesības atteikt procedūras veikšanu. Šādā gadījumā pieraksts tiek uzskatīts par atceltu pēc Klienta iniciatīvas.</p>
+            <p>5.6. Izpildītājam ir tiesības atteikt procedūras veikšanu kontrindikāciju gadījumā.</p>
+
+            <h4>6. Citi noteikumi</h4>
+            <p>6.1. Veicot pierakstu un apmaksājot Izpildītāja laika rezervāciju, Klients apstiprina, ka piekrīt šī Publiskā piedāvājuma noteikumiem.</p>
+            <p>6.2. Izpildītājam ir tiesības veikt izmaiņas šajā Publiskajā piedāvājumā. Aktuālā versija tiek publicēta Izpildītāja tiešsaistes lapā un Instagram profilā.</p>
+          </div>
+
+          <div class="ru">
+            <p class="offer-title">Публичная оферта</p>
+            <p class="offer-subtitle">о записи на косметологические услуги и условиях их предоставления</p>
+            <p>Настоящая Публичная оферта является официальным предложением Светланы Гаврилюк (далее — «Исполнитель») любому лицу (далее — «Клиент») заключить договор на нижеуказанных условиях.</p>
+
+            <h4>1. Общие положения</h4>
+            <p>1.1. Исполнитель оказывает косметологические услуги согласно актуальному прайс-листу.</p>
+            <p>1.2. Актуальный прайс-лист доступен: на сайте Исполнителя https://taplink.cc/lavera, а также в Instagram-профиле Исполнителя @lavera.skin.atelier, в разделе «Highlights» — «Pricelist».</p>
+            <p>1.3. Настоящая Публичная оферта устанавливает порядок записи, условия оказания услуг, а также порядок отмены и переноса записи.</p>
+            <p>1.4. Осуществление записи и оплата брони времени Исполнителя означает полное и безоговорочное согласие Клиента с условиями настоящей Публичной оферты.</p>
+
+            <h4>2. Условия записи</h4>
+            <p>2.1. Для записи Клиент обязан указать имя, фамилию и контактный номер телефона.</p>
+            <p>2.2. Запись подтверждается только после оплаты брони времени Исполнителя в размере 45 евро, если Исполнителем не указана иная сумма.</p>
+            <p>2.3. До получения оплаты запись считается предварительной, не считается подтверждённой и не гарантирует Клиенту бронирование выбранного времени.</p>
+            <p>2.4. Оплата брони времени Исполнителя является обязательным условием подтверждения записи.</p>
+            <p>2.5. Оплата брони времени засчитывается в общую стоимость услуги. В день визита Клиент доплачивает разницу между стоимостью выбранной услуги и уже внесённой суммой.</p>
+            <p>2.6. Оплата брони времени Исполнителя невозвратна.</p>
+
+            <h4>3. Порядок платежей</h4>
+            <p>3.1. Оплата брони времени Исполнителя производится банковским переводом:</p>
+            <div class="offer-bank">SVETLANA GAVRIĻUKA<br>LV22HABA0551050333988</div>
+            <p>3.2. В назначении платежа Клиент обязательно указывает: бронь времени визита (дата) в (время).</p>
+            <p>3.3. Если назначение платежа не указано или указано некорректно, Исполнитель вправе не подтверждать запись.</p>
+            <p>3.4. Денежные средства, переведённые без корректно указанного назначения платежа, возвращаются плательщику. В этом случае запись не считается подтверждённой до получения корректно оформленного платежа.</p>
+
+            <h4>4. Отмена и перенос записи</h4>
+            <p>4.1. Если Клиент уведомляет Исполнителя не менее чем за 48 часов, запись можно перенести один раз без потери внесённой суммы.</p>
+            <p>4.2. При повторном переносе визита внесённая сумма не сохраняется. Новая запись возможна только после новой оплаты брони.</p>
+            <p>4.3. Если запись отменяется менее чем за 48 часов до визита, внесённая сумма теряется.</p>
+            <p>4.4. В исключительном случае, связанном с болезнью, Исполнитель может перенести запись без потери оплаты, даже если уведомление сделано менее чем за 48 часов.</p>
+            <p>4.5. Данная возможность предоставляется один раз. При повторных отменах, неявке, забытых визитах или по иным причинам со стороны Клиента внесённая сумма не сохраняется, и новая запись возможна только после новой оплаты.</p>
+            <p>4.6. Клиент обязуется ответственно относиться к записи и учитывать состояние своего здоровья при выборе даты визита.</p>
+
+            <h4>5. Условия проведения процедур</h4>
+            <p>5.1. Перед любой процедурой Клиент обязан: заполнить карту клиента (анамнез); предоставить достоверную информацию о состоянии здоровья; подписать информированное согласие.</p>
+            <p>5.2. Клиент обязан информировать Исполнителя о наличии инфекционных заболеваний, в том числе активной герпес-инфекции, а также признаках острых вирусных или кишечных заболеваний.</p>
+            <p>5.3. Информированное согласие подписывается непосредственно перед процедурой.</p>
+            <p>5.4. Клиент вправе заранее ознакомиться с текстом информированного согласия и картой клиента, запросив их у Исполнителя до визита.</p>
+            <p>5.5. Если Клиент отказывается заполнить карту клиента и/или подписать информированное согласие, Исполнитель вправе отказать в проведении процедуры. В этом случае запись считается отменённой по инициативе Клиента.</p>
+            <p>5.6. Исполнитель вправе отказать в проведении процедуры при наличии противопоказаний.</p>
+
+            <h4>6. Прочие условия</h4>
+            <p>6.1. Осуществляя запись и оплачивая бронь времени Исполнителя, Клиент подтверждает согласие с условиями настоящей Публичной оферты.</p>
+            <p>6.2. Исполнитель вправе вносить изменения в настоящую Публичную оферту. Актуальная версия публикуется на сайте Исполнителя и в Instagram-профиле.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LOCATION ================= -->
+<section class="section-alt" id="contact">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="kicker lv">Atrašanās vieta</span><span class="kicker ru">Расположение</span>
+      <h2 class="lv">Apmeklē studiju</h2><h2 class="ru">Приходи в студию</h2>
+    </div>
+
+    <div class="loc-grid reveal">
+      <div class="loc-info">
+        <dl>
+          <dt class="lv">Adrese</dt><dt class="ru">Адрес</dt>
+          <dd>Elizabetes iela 31, 2. stāvs, Rīga
+            <span class="dim lv">Ieejas kods tiek nosūtīts pēc pieraksta izveidošanas</span>
+            <span class="dim ru">Код от входной двери отправляется после оформления записи</span>
+          </dd>
+
+          <dt class="lv">Darba laiks</dt><dt class="ru">Время работы</dt>
+          <dd class="lv">Pirmdien, otrdien, ceturtdien, piektdien<span class="dim">No plkst. 10:00, pēdējais pieraksts 17:30</span></dd>
+          <dd class="ru">Понедельник, вторник, четверг, пятница<span class="dim">С 10:00, последняя запись в 17:30</span></dd>
+
+          <dt class="lv">Kontakti</dt><dt class="ru">Контакты</dt>
+          <dd>+371 26 106 324 <span class="dim lv">WhatsApp / zvans</span><span class="dim ru">WhatsApp / звонок</span></dd>
+
+          <dt>Instagram</dt>
+          <dd>
+            <a href="https://www.instagram.com/lavera.skin.atelier/" target="_blank" rel="noopener" style="color:var(--accent-soft); text-decoration:none;">@lavera.skin.atelier</a>
+            <span class="dim lv">Studija</span><span class="dim ru">Студия</span>
+          </dd>
+        </dl>
+
+        <div class="hours-table">
+          <div class="hours-row"><span class="d lv">Pirmdiena</span><span class="d ru">Понедельник</span><span class="t">10:00 – 17:30</span></div>
+          <div class="hours-row"><span class="d lv">Otrdiena</span><span class="d ru">Вторник</span><span class="t">10:00 – 17:30</span></div>
+          <div class="hours-row"><span class="d lv">Trešdiena</span><span class="d ru">Среда</span><span class="t lv">Brīvdiena</span><span class="t ru">Выходной</span></div>
+          <div class="hours-row"><span class="d lv">Ceturtdiena</span><span class="d ru">Четверг</span><span class="t">10:00 – 17:30</span></div>
+          <div class="hours-row"><span class="d lv">Piektdiena</span><span class="d ru">Пятница</span><span class="t">10:00 – 17:30</span></div>
+          <div class="hours-row"><span class="d lv">Sestdiena, svētdiena</span><span class="d ru">Суббота, воскресенье</span><span class="t lv">Brīvdiena</span><span class="t ru">Выходной</span></div>
+        </div>
+      </div>
+
+      <a class="map-card" href="https://www.google.com/maps/search/?api=1&amp;query=Elizabetes+iela+31%2C+R%C4%ABga%2C+Latvija" target="_blank" rel="noopener" aria-label="Elizabetes iela 31, Rīga — atvērt Google Maps jaunā cilnē">
+        <div class="pin">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 22s7-7.4 7-12.6A7 7 0 0 0 5 9.4C5 14.6 12 22 12 22Z"/><circle cx="12" cy="9.4" r="2.4"/></svg>
+          <p class="addr">Elizabetes iela 31<br>Rīga, Latvija</p>
+        </div>
+        <span class="map-open">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 4h6v6M20 4l-9 9M10 5H6a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-4"/></svg>
+          <span class="lv">Atvērt Google Maps</span><span class="ru">Открыть в Google Maps</span>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA BAND ================= -->
+<div class="cta-band">
+  <div class="wrap">
+    <span class="kicker lv">Rezervē savu laiku</span><span class="kicker ru">Забронируй своё время</span>
+    <h2 class="lv">Ādas kopšana, kas balstīta izpratnē par tavu ādu</h2>
+    <h2 class="ru">Уход, который основан на понимании твоей кожи</h2>
+    <div class="cta-row">
+      <a class="btn btn-gold" href="https://wa.me/37126106324" target="_blank" rel="noopener">
+        <span class="lv">Rakstīt WhatsApp</span><span class="ru">Написать в WhatsApp</span>
+      </a>
+      <a class="btn btn-ghost" href="https://www.instagram.com/lavera.skin.atelier/" target="_blank" rel="noopener">
+        <span class="lv">Sekot Instagram</span><span class="ru">Instagram студии</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="1.2" style="color:var(--accent-soft)"/><path d="M14 14 L24 34 L34 14" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" style="color:var(--accent-soft)"/><path d="M17 14 V28" stroke="currentColor" stroke-width="1.4" style="color:var(--accent-soft)"/></svg>
+        <span class="name lv">LAVÉRA SKIN ATELIER</span>
+        <span class="name ru">LAVÉRA SKIN ATELIER</span>
+      </div>
+      <div class="foot-links">
+        <a href="#master" class="lv">Meistare</a><a href="#master" class="ru">Мастер</a>
+        <a href="#treatments" class="lv">Procedūras</a><a href="#treatments" class="ru">Процедуры</a>
+        <a href="#pricing" class="lv">Cenrādis</a><a href="#pricing" class="ru">Цены</a>
+        <a href="#reviews" class="lv">Atsauksmes</a><a href="#reviews" class="ru">Отзывы</a>
+        <a href="https://www.instagram.com/lavera.skin.atelier/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span class="lv">© 2026 Lavéra Skin Atelier · Elizabetes iela 31, Rīga</span>
+      <span class="ru">© 2026 Lavéra Skin Atelier · ул. Elizabetes 31, Рига</span>
+      <span class="lv">Kosmetoloģe Svetlana Gavriļuka</span>
+      <span class="ru">Косметолог Светлана Гаврилюк</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/37126106324" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.28-1.38a9.9 9.9 0 0 0 4.76 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2Zm5.78 14.1c-.24.68-1.39 1.3-1.92 1.38-.49.08-1.11.11-1.79-.11-.41-.13-.94-.31-1.62-.6-2.85-1.23-4.71-4.1-4.85-4.29-.14-.19-1.16-1.55-1.16-2.95 0-1.4.73-2.09 1-2.38.27-.29.58-.36.77-.36h.55c.18 0 .41-.07.64.49.24.58.8 2 .87 2.14.07.14.11.31.02.5-.09.19-.14.31-.27.47-.14.16-.29.36-.41.48-.14.14-.28.29-.12.57.16.28.71 1.17 1.52 1.9 1.05.94 1.93 1.23 2.21 1.37.28.14.44.12.6-.07.16-.19.69-.8.87-1.08.18-.28.36-.23.6-.14.24.09 1.55.73 1.82.86.27.14.45.2.51.32.07.12.07.68-.17 1.36Z"/></svg>
+</a>
+
+<script>
+(function(){
+  var LANG_KEY = 'lavera-lang';
+  var saved = null;
+  try { saved = localStorage.getItem(LANG_KEY); } catch(e){}
+  var lang = saved || 'lv';
+  document.documentElement.setAttribute('data-lang', lang);
+  document.querySelectorAll('[data-lang]').forEach(function(el){ el.setAttribute('data-lang', lang); });
+
+  function setLang(l){
+    lang = l;
+    document.documentElement.setAttribute('data-lang', l);
+    document.querySelectorAll('header.site[data-lang]').forEach(function(el){ el.setAttribute('data-lang', l); });
+    document.querySelectorAll('[data-set-lang]').forEach(function(btn){
+      btn.setAttribute('aria-pressed', btn.getAttribute('data-set-lang') === l ? 'true' : 'false');
+    });
+    try { localStorage.setItem(LANG_KEY, l); } catch(e){}
+  }
+  document.querySelectorAll('[data-set-lang]').forEach(function(btn){
+    btn.addEventListener('click', function(){ setLang(btn.getAttribute('data-set-lang')); });
+  });
+  setLang(lang);
+
+  // photo slots: try a few common extensions for each named file; if none
+  // load, the hand-drawn placeholder underneath stays visible.
+  var EXTS = ['jpg','jpeg','png','webp'];
+  document.querySelectorAll('.photo-slot[data-photo-base]').forEach(function(slot){
+    var base = slot.getAttribute('data-photo-base');
+    var img = slot.querySelector('img');
+    if (!img) return;
+    var i = 0;
+    function tryNext(){
+      if (i >= EXTS.length) return;
+      img.src = base + '.' + EXTS[i];
+      i++;
+    }
+    img.addEventListener('error', tryNext);
+    img.addEventListener('load', function(){
+      if (img.naturalWidth > 0) slot.classList.add('has-photo');
+    });
+    tryNext();
+  });
+
+  // treatment accordion
+  document.querySelectorAll('[data-treat-toggle]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.treat-item');
+      item.classList.toggle('open');
+    });
+  });
+
+  // pricing accordion
+  document.querySelectorAll('[data-price-toggle]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.price-cat');
+      item.classList.toggle('open');
+    });
+  });
+  // open first price category by default
+  var firstCat = document.querySelector('.price-cat');
+  if (firstCat) firstCat.classList.add('open');
+
+  // offer accordion
+  var offerBtn = document.querySelector('[data-offer-toggle]');
+  if (offerBtn){
+    offerBtn.addEventListener('click', function(){
+      document.getElementById('offer-box').classList.toggle('open');
+    });
+  }
+
+  // bio toggle
+  var bioBtn = document.querySelector('[data-bio-toggle]');
+  if (bioBtn){
+    bioBtn.addEventListener('click', function(){
+      var open = document.querySelectorAll('.bio-full').forEach(function(el){ el.classList.toggle('open'); });
+      var isOpen = document.querySelector('.bio-full').classList.contains('open');
+      bioBtn.querySelectorAll('[data-more]').forEach(function(s){
+        var lvTxt = 'Lasīt pilnu stāstu →', lvTxtClose = 'Aizvērt →';
+        var ruTxt = 'Читать полностью →', ruTxtClose = 'Свернуть →';
+      });
+      bioBtn.querySelector('.lv').textContent = isOpen ? 'Aizvērt ↑' : 'Lasīt pilnu stāstu →';
+      bioBtn.querySelector('.ru').textContent = isOpen ? 'Свернуть ↑' : 'Читать полностью →';
+    });
+  }
+
+  // gentle reveal-on-scroll, safe by construction: everything is visible unless
+  // explicitly marked "pending" for elements starting below the fold, and a
+  // fallback timer guarantees nothing stays hidden even if IO never fires.
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if ('IntersectionObserver' in window && !reduceMotion){
+    var revealEls = document.querySelectorAll('.reveal');
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.remove('pending'); en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, {threshold:0.05, rootMargin:'0px 0px -40px 0px'});
+    revealEls.forEach(function(el){
+      var r = el.getBoundingClientRect();
+      if (r.top > window.innerHeight){ el.classList.add('pending'); io.observe(el); }
+      else { el.classList.add('in'); }
+    });
+    // safety net: force-reveal anything still pending after a short delay
+    setTimeout(function(){
+      document.querySelectorAll('.reveal.pending').forEach(function(el){
+        el.classList.remove('pending'); el.classList.add('in');
+      });
+    }, 2500);
+  }
+})();
+</script>
