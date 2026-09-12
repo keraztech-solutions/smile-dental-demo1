@@ -1407,8 +1407,9 @@ footer{padding:56px 0 40px;}
 
   #lva-panel {
     position: fixed; right: 20px; bottom: 86px; z-index: 998;
-    width: 340px; max-width: calc(100vw - 32px);
-    height: 460px; max-height: calc(100vh - 130px);
+    width: 400px; max-width: calc(100vw - 32px);
+    height: min(660px, calc(100vh - 120px));
+    padding: 0; margin: 0;
     display: flex; flex-direction: column;
     background: var(--surface); border: 1px solid var(--line-strong); border-radius: 14px;
     box-shadow: 0 16px 48px rgba(0,0,0,0.5);
@@ -1417,6 +1418,7 @@ footer{padding:56px 0 40px;}
     transition: opacity .22s ease, transform .22s ease, visibility .22s;
     font-family: var(--sans);
     color: var(--text);
+    overflow: hidden;
   }
   body.lva-open #lva-panel { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
 
@@ -1456,8 +1458,15 @@ footer{padding:56px 0 40px;}
   #lva-send[disabled] { opacity: .5; cursor: not-allowed; }
   #lva-send svg { width: 16px; height: 16px; }
 
-  @media (max-width: 480px) {
-    #lva-panel { right: 12px; left: 12px; width: auto; bottom: 80px; height: min(70vh, 480px); }
+  @media (max-width: 640px) {
+    #lva-panel {
+      right: 0; left: 0; top: 0; bottom: 0;
+      width: auto; max-width: 100vw;
+      height: 100%; height: 100dvh; max-height: 100dvh;
+      border-radius: 0; border: none;
+      transform: translateY(16px);
+    }
+    body.lva-open #lva-panel { transform: translateY(0); }
     #lva-toggle { right: 16px; bottom: 16px; }
   }
 </style>
@@ -1467,7 +1476,7 @@ footer{padding:56px 0 40px;}
   <svg class="lva-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
 </button>
 
-<section id="lva-panel" role="dialog" aria-label="AI assistant" aria-hidden="true">
+<div id="lva-panel" role="dialog" aria-label="AI assistant" aria-hidden="true">
   <header>
     <span>Lavéra Assistant</span>
     <button type="button" id="lva-close" aria-label="Close assistant">
@@ -1483,7 +1492,7 @@ footer{padding:56px 0 40px;}
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7Z"/></svg>
     </button>
   </form>
-</section>
+</div>
 
 <script>
 (function () {
